@@ -8,6 +8,7 @@ class App extends React.Component<{}, AppState> {
   state: AppState = {
     monsters: [],
     search: '',
+    title: '',
   };
 
   componentDidMount(): void {
@@ -27,7 +28,7 @@ class App extends React.Component<{}, AppState> {
     );
     return (
       <div className="App">
-        <h1>Monster rollodex</h1>
+        <h1>{this.state.title}</h1>
         <SearchBox placeholder="search monsters" handleChange={this.handle} />
         <CardList monsters={monstersfiltered} />
       </div>
@@ -37,7 +38,10 @@ class App extends React.Component<{}, AppState> {
   handle = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const search = evt.target.value;
     return this.setState((stateold) => {
-      return { search: search };
+      return {
+        search: search,
+        title: search,
+      };
     });
   };
 }
